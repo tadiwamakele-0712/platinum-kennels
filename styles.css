@@ -952,10 +952,6 @@ button {
 }
 
 .contact-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1rem 1.1rem;
   border: 1px solid var(--line);
   background: var(--panel);
   transition: border-color 0.25s, background 0.25s;
@@ -964,6 +960,23 @@ button {
 .contact-list li:hover {
   border-color: rgba(200, 208, 219, 0.35);
   background: var(--panel-hover);
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.contact-detail {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--platinum-bright);
+  word-break: break-word;
 }
 
 .contact-icon {
@@ -989,6 +1002,10 @@ button {
   border-color: rgba(37, 211, 102, 0.35);
 }
 
+.contact-icon-mail {
+  color: var(--platinum-bright);
+}
+
 .contact-icon-fb {
   color: #4b8fff;
   background: rgba(75, 143, 255, 0.12);
@@ -1009,15 +1026,8 @@ button {
   margin-bottom: 0.25rem;
 }
 
-.contact-list a {
-  font-size: 1.05rem;
-  font-weight: 500;
-  text-decoration: none;
-  word-break: break-word;
-}
-
-.wa-link {
-  color: var(--wa) !important;
+.contact-list .contact-link:hover .contact-detail {
+  color: var(--link-hover);
 }
 
 .contact-panel {
