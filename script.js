@@ -47,6 +47,40 @@
     });
   }
 
+  /* Story: show a preview, expand on Read more */
+  const storyBody = document.querySelector(".story-body");
+  const storyText = document.getElementById("story-text");
+  const storyMore = document.querySelector(".story-more");
+
+  if (storyBody && storyText && storyMore) {
+    const setStoryOpen = (open) => {
+      storyBody.classList.toggle("is-expanded", open);
+      storyMore.setAttribute("aria-expanded", String(open));
+      storyMore.textContent = open ? "Read less" : "Read more";
+      storyText.style.maxHeight = open ? `${storyText.scrollHeight}px` : "";
+    };
+
+    storyBody.classList.add("is-collapsible");
+    storyMore.hidden = false;
+
+    storyMore.addEventListener("click", () => {
+      const open = storyMore.getAttribute("aria-expanded") === "true";
+      setStoryOpen(!open);
+      if (open && storyBody.getBoundingClientRect().top < 80) {
+        const section = document.getElementById("story");
+        const headerH = header?.offsetHeight || 0;
+        const top = (section?.getBoundingClientRect().top || 0) + window.scrollY - headerH - 12;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (storyBody.classList.contains("is-expanded")) {
+        storyText.style.maxHeight = `${storyText.scrollHeight}px`;
+      }
+    });
+  }
+
   /* Scroll reveal */
   const reveals = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window) {
